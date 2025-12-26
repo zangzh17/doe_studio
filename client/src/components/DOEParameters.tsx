@@ -152,8 +152,10 @@ const FABRICATION_RECIPES = [
 ];
 
 // Helper function to parse value with unit
-function parseValueWithUnit(value: string): { value: number; unit: string } {
-  const match = value.match(/^([\d.]+)\s*([a-zA-Z°]+)?$/);
+function parseValueWithUnit(value: string | number): { value: number; unit: string } {
+  // Convert to string if it's a number
+  const strValue = String(value);
+  const match = strValue.match(/^([\d.]+)\s*([a-zA-Z°]+)?$/);
   if (match) {
     return { value: parseFloat(match[1]), unit: match[2] || "" };
   }
@@ -161,7 +163,7 @@ function parseValueWithUnit(value: string): { value: number; unit: string } {
 }
 
 // Convert to mm
-function convertToMm(value: string): number {
+function convertToMm(value: string | number): number {
   const parsed = parseValueWithUnit(value);
   const unit = parsed.unit.toLowerCase();
   switch (unit) {
@@ -176,7 +178,7 @@ function convertToMm(value: string): number {
 }
 
 // Convert to nm
-function convertToNm(value: string): number {
+function convertToNm(value: string | number): number {
   const parsed = parseValueWithUnit(value);
   const unit = parsed.unit.toLowerCase();
   switch (unit) {
@@ -188,7 +190,7 @@ function convertToNm(value: string): number {
 }
 
 // Convert to degrees
-function convertToDegrees(value: string): number {
+function convertToDegrees(value: string | number): number {
   const parsed = parseValueWithUnit(value);
   const unit = parsed.unit.toLowerCase();
   if (unit === "rad") return parsed.value * 180 / Math.PI;
@@ -256,8 +258,8 @@ export default function DOEParameters({
     onParamsChange({ ...params, [key]: value });
   };
 
-  const isInfiniteDistance = params.workingDistance.toLowerCase() === "inf" || 
-                              params.workingDistance.toLowerCase() === "infinity";
+  const isInfiniteDistance = String(params.workingDistance || "").toLowerCase() === "inf" ||
+                              String(params.workingDistance || "").toLowerCase() === "infinity";
 
   // Parse values for calculations
   const wavelengthNm = useMemo(() => convertToNm(params.wavelength || "532nm"), [params.wavelength]);
