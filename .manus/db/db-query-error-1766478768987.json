@@ -1,8 +1,0 @@
-{
-  "query": "\nINSERT INTO doe_templates (name, description, mode, category, parameters, is_public, created_at, updated_at)\nVALUES ('50×50 Spot Array', 'Standard 50×50 spot projector for structured light applications. Suitable for 3D scanning and depth sensing.', '2d_spot_projector', 'spot_projector', '{\"workingDistance\":\"inf\",\"workingDistanceUnit\":\"mm\",\"wavelength\":\"850nm\",\"deviceDiameter\":\"12.7mm\",\"deviceShape\":\"circular\",\"arrayRows\":\"50\",\"arrayCols\":\"50\",\"targetType\":\"angle\",\"targetAngle\":\"30deg\",\"tolerance\":\"1\",\"fabricationEnabled\":false}', true, NOW(), NOW());\n",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3wvNR78LJfRkg3f.root --database SRCCZ7ngz5qjUJ9SmbaGeY --execute \nINSERT INTO doe_templates (name, description, mode, category, parameters, is_public, created_at, updated_at)\nVALUES ('50×50 Spot Array', 'Standard 50×50 spot projector for structured light applications. Suitable for 3D scanning and depth sensing.', '2d_spot_projector', 'spot_projector', '{\"workingDistance\":\"inf\",\"workingDistanceUnit\":\"mm\",\"wavelength\":\"850nm\",\"deviceDiameter\":\"12.7mm\",\"deviceShape\":\"circular\",\"arrayRows\":\"50\",\"arrayCols\":\"50\",\"targetType\":\"angle\",\"targetAngle\":\"30deg\",\"tolerance\":\"1\",\"fabricationEnabled\":false}', true, NOW(), NOW());\n",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 2: Unknown column 'is_public' in 'field list'"
-  ]
-}
