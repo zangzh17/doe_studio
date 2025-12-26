@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1766475814455,
+      "tag": "0000_futuristic_wallow",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1766475880677,
+      "tag": "0001_flaky_skullbuster",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1766481798272,
+      "tag": "0002_lethal_micromacro",
+      "breakpoints": true
+    }
+  ]
+}
