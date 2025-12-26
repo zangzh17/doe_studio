@@ -6,7 +6,35 @@
       "Bash(pnpm install:*)",
       "Bash(pnpm add:*)",
       "Bash(pnpm test:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(pnpm db:push:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_click",
+      "Bash(pnpm dev)",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_type",
+      "Bash(npx drizzle-kit:*)",
+      "Bash(mysql:*)",
+      "Bash(node create-tables.js:*)",
+      "Bash(node check-tables.js:*)",
+      "Bash(node check-data.js:*)",
+      "Bash(node fix-tables.js:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill //F //PID 8880)",
+      "Bash(node verify-login.js:*)",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(node check-schema.js:*)",
+      "Bash(node fix-designs-table.js:*)",
+      "Bash(node seed-templates.js:*)",
+      "Bash(node verify-design.js:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
 }

@@ -85,13 +85,17 @@ PROJECT_STRUCTURE_GUIDE.md, DATABASE_GUIDE.md, DEVELOPMENT_GUIDE.md, AUTH_AND_US
 
 ## Development Notes
 
-**Authentication**: Lucia Auth with Google/WeChat OAuth (server/_core/lucia.ts, server/_core/auth.ts). Three access levels: public, protected, admin (server/_core/trpc.ts:11-45). OAuth routes at /api/auth/google and /api/auth/wechat.
+**Authentication**: Lucia Auth with Google/WeChat OAuth (server/_core/lucia.ts, server/_core/auth.ts). Three access levels: public, protected, admin (server/_core/trpc.ts:11-45). OAuth routes at /api/auth/google and /api/auth/wechat. Session cookie: `doe_session` (30-day expiry).
 
-**Database**: Lazy connection (server/db.ts:8-18), all queries via server/db.ts functions, schema-first with inference. User IDs are strings (varchar). Key tables: users, sessions, oauthAccounts, doeDesigns, doeTemplates.
+**Database**: Lazy connection (server/db.ts:8-18), all queries via server/db.ts functions, schema-first with inference. **User IDs are strings (varchar)** - critical for Lucia compatibility. Key tables: users, sessions, oauthAccounts, doeDesigns, doeTemplates.
+
+**Database Migrations**: Use `pnpm db:push` to apply schema changes. Migration files in drizzle/migrations/ (drizzle.config.ts:out). **Important**: Always ensure table column types match schema definitions (especially userId: varchar(255)).
+
+**Template Parameters**: DOE templates store parameters as numbers in database, but DOEParameters component handles both string and number types. Use type conversion functions (convertToMm, convertToNm, etc.) for safe parsing.
 
 **API Development**: (1) Define Zod schema, (2) Add endpoint in server/routers.ts, (3) Add DB function in server/db.ts, (4) Use tRPC hooks in components
 
-**Frontend**: Pages in pages/, components in components/, global state via Context (contexts/), server state via tRPC + React Query, error boundary at root
+**Frontend**: Pages in pages/, components in components/, global state via Context (contexts/), server state via tRPC + React Query, error boundary at root. Preview and Optimize features use mock data for demonstration.
 
 **Code Organization**: `_core/` = framework (rarely modify), business logic outside `_core/`, shared code in shared/
 
