@@ -132,6 +132,11 @@ export default function Studio() {
       window.location.href = getLoginUrl();
       return;
     }
+    // Generate default name based on current design count
+    const defaultName = language === "zh"
+      ? `设计 ${designs.length + 1}`
+      : `Design ${designs.length + 1}`;
+    setNewDesignName(defaultName);
     setShowNewDesignDialog(true);
   };
 
