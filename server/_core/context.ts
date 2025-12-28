@@ -29,6 +29,8 @@ export async function createContext(
           avatarUrl: string | null;
           role: "user" | "admin";
           optimizationCredits: number;
+          emailVerified?: boolean;
+          supabaseUserId?: string | null;
         };
         user = {
           id: attrs.id,
@@ -37,6 +39,8 @@ export async function createContext(
           avatarUrl: attrs.avatarUrl,
           role: attrs.role,
           optimizationCredits: attrs.optimizationCredits,
+          emailVerified: attrs.emailVerified || false,
+          supabaseUserId: attrs.supabaseUserId || null,
           createdAt: new Date(), // These will be fetched if needed
           updatedAt: new Date(),
           lastSignedIn: new Date(),

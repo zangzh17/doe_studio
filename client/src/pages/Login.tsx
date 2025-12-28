@@ -6,7 +6,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Loader2 } from "lucide-react";
+import { Loader2, Mail } from "lucide-react";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 
@@ -48,6 +48,10 @@ export default function Login() {
 
   const handleWeChatLogin = () => {
     window.location.href = "/api/auth/wechat";
+  };
+
+  const handleEmailLogin = () => {
+    setLocation("/login-email");
   };
 
   if (loading) {
@@ -92,6 +96,26 @@ export default function Login() {
             >
               <WeChatIcon className="h-5 w-5" />
               {language === "en" ? "Continue with WeChat" : "使用微信登录"}
+            </Button>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-200 dark:border-slate-700" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white dark:bg-slate-800 px-2 text-muted-foreground">
+                  {language === "en" ? "Or" : "或者"}
+                </span>
+              </div>
+            </div>
+
+            <Button
+              onClick={handleEmailLogin}
+              variant="outline"
+              className="w-full h-12 text-base font-medium gap-3 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700"
+            >
+              <Mail className="h-5 w-5" />
+              {language === "en" ? "Continue with Email" : "使用邮箱登录"}
             </Button>
           </div>
 

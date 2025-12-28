@@ -5,6 +5,7 @@ import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerAuthRoutes } from "./auth";
+import emailAuthRouter from "./auth-email";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
@@ -38,6 +39,8 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // Auth routes (Google, WeChat OAuth)
   registerAuthRoutes(app);
+  // Email authentication routes
+  app.use('/api/auth/email', emailAuthRouter);
   // tRPC API
   app.use(
     "/api/trpc",

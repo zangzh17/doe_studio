@@ -16,6 +16,10 @@ export const ENV = {
   // Admin configuration
   ADMIN_EMAIL: process.env.ADMIN_EMAIL ?? "",
 
+  // Supabase configuration
+  SUPABASE_URL: process.env.SUPABASE_URL ?? "",
+  SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY ?? "",
+
   // Forge API (for DOE optimization, image generation, etc.)
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",

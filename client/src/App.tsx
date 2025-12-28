@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import LoginEmail from "./pages/LoginEmail";
 import Studio from "./pages/Studio";
 import DOEStudio from "./pages/DOEStudio";
 import Docs from "./pages/Docs";
@@ -18,6 +19,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/login"} component={Login} />
+      <Route path={"/login-email"} component={LoginEmail} />
       <Route path={"/studio"} component={Studio} />
       <Route path={"/studio/:id"} component={DOEStudio} />
       <Route path={"/docs"} component={Docs} />

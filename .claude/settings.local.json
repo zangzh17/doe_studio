@@ -30,7 +30,11 @@
       "Bash(node verify-design.js:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pnpm build:*)",
+      "Bash(npm:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm start)"
     ]
   },
   "enableAllProjectMcpServers": true,

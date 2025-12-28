@@ -9,14 +9,18 @@ export const users = mysqlTable("users", {
   id: varchar("id", { length: 255 }).primaryKey(),
   /** User display name */
   name: text("name"),
-  /** User email */
-  email: varchar("email", { length: 320 }),
+  /** User email - unique for Supabase Auth */
+  email: varchar("email", { length: 320 }).unique(),
+  /** Email verification status */
+  emailVerified: boolean("emailVerified").default(false),
   /** Avatar URL */
   avatarUrl: text("avatarUrl"),
   /** User role */
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
   /** Remaining optimization credits */
   optimizationCredits: int("optimizationCredits").default(10).notNull(),
+  /** Supabase user ID (for linking) */
+  supabaseUserId: varchar("supabaseUserId", { length: 255 }).unique(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),

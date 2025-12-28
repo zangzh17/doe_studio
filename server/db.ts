@@ -1,6 +1,6 @@
 import { eq, desc, and, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { users, doeDesigns, InsertDoeDesign, DoeDesign, doeTemplates, DoeTemplate, InsertDoeTemplate } from "../drizzle/schema";
+import { users, doeDesigns, InsertDoeDesign, DoeDesign, doeTemplates, DoeTemplate, InsertDoeTemplate, User } from "../drizzle/schema";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
@@ -175,4 +175,52 @@ export async function decrementUserCredits(userId: string): Promise<boolean> {
     .where(and(eq(users.id, userId), sql`${users.optimizationCredits} > 0`));
 
   return result[0].affectedRows > 0;
+}
+
+// ==================== User Management ====================
+
+export async function createUser(userData: typeof users.$inferInsert): Promise<User> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.insert(users).values(userData);
+  return userData as User;
+}
+
+export async function getUserByEmail(email: string): Promise<User | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, email))
+    .limit(1);
+
+  return result[0];
+}
+
+export async function updateUser(id: string, updates: Partial<typeof users.$inferInsert>): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+
+  const result = await db
+    .update(users)
+    .set(updates)
+    .where(eq(users.id, id));
+
+  return result[0].affectedRows > 0;
+}
+
+export async function getUserBySupabaseId(supabaseUserId: string): Promise<User | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db
+    .select()
+    .from(users)
+    .where(eq(users.supabaseUserId, supabaseUserId))
+    .limit(1);
+
+  return result[0];
 }
